@@ -1,4 +1,4 @@
-﻿export class TsStore {
+export class TsStore {
     public isLocalStore: boolean = false;
     public storeName: string = '';
     public storeInit: boolean = false;
