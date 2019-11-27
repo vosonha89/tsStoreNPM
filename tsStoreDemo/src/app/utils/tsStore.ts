@@ -55,14 +55,15 @@ export class TsStore {
     public insert(item: any) {
         let me = this;
         do {
-            item.storeId = me.storeName + 'Item_' + me.generateId();
+            item.storeItemId = me.storeName + 'Item_' + me.generateId();
         }
-        while (me.isStoreIdExists(item.storeId));
+        while (me.isStoreIdExists(item.storeItemId));
         let dataStore: Storage = me.dataStore();
         let store: string | null = dataStore.getItem(me.storeName) || '[]';
         let storeKeys = JSON.parse(store);
-        storeKeys.push(item.storeId);
+        storeKeys.push(item.storeItemId);
         dataStore.setItem(me.storeName, JSON.stringify(storeKeys));
-        dataStore.setItem(item.storeId, JSON.stringify(item));
+        dataStore.setItem(item.storeItemId, JSON.stringify(item));
     }
+
 }

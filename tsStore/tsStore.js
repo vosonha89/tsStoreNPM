@@ -53,14 +53,24 @@ var TsStore = /** @class */ (function () {
     TsStore.prototype.insert = function (item) {
         var me = this;
         do {
-            item.storeId = me.storeName + 'Item_' + me.generateId();
-        } while (me.isStoreIdExists(item.storeId));
+            item.storeItemId = me.storeName + 'Item_' + me.generateId();
+        } while (me.isStoreIdExists(item.storeItemId));
         var dataStore = me.dataStore();
         var store = dataStore.getItem(me.storeName) || '[]';
         var storeKeys = JSON.parse(store);
-        storeKeys.push(item.storeId);
+        storeKeys.push(item.storeItemId);
         dataStore.setItem(me.storeName, JSON.stringify(storeKeys));
-        dataStore.setItem(item.storeId, JSON.stringify(item));
+        dataStore.setItem(item.storeItemId, JSON.stringify(item));
+    };
+    TsStore.prototype.remove = function (storeItemId) {
+        var me = this;
+        var dataStore = me.dataStore();
+        '';
+        var store = dataStore.getItem(me.storeName) || '[]';
+        var storeKeys = JSON.parse(store);
+        storeKeys.splice(storeKeys.indexOf(storeItemId), 1);
+        dataStore.setItem(me.storeName, JSON.stringify(storeKeys));
+        dataStore.removeItem(storeItemId);
     };
     return TsStore;
 }());
