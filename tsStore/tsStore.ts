@@ -1,4 +1,6 @@
-﻿export class TsStore {
+﻿import { TsStoreItem } from "./tsStoreItem";
+
+export class TsStore {
     public isLocalStore: boolean = false;
     public storeName: string = '';
     public storeInit: boolean = false;
@@ -52,7 +54,7 @@
         return new TsStore(storeName, isLocalStore);
     }
 
-    public insert(item: any) {
+    public insert<T extends TsStoreItem>(item: T): T {
         let me = this;
         do {
             item.storeItemId = me.storeName + 'Item_' + me.generateId();
@@ -64,9 +66,10 @@
         storeKeys.push(item.storeItemId);
         dataStore.setItem(me.storeName, JSON.stringify(storeKeys));
         dataStore.setItem(item.storeItemId, JSON.stringify(item));
+        return item;
     }
 
-    public remove(storeItemId: string) {
+    public remove(storeItemId: string): void {
         let me = this;
         let dataStore: Storage = me.dataStore(); ''
         let store: string | null = dataStore.getItem(me.storeName) || '[]';

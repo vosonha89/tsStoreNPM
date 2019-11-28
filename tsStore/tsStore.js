@@ -61,6 +61,7 @@ var TsStore = /** @class */ (function () {
         storeKeys.push(item.storeItemId);
         dataStore.setItem(me.storeName, JSON.stringify(storeKeys));
         dataStore.setItem(item.storeItemId, JSON.stringify(item));
+        return item;
     };
     TsStore.prototype.remove = function (storeItemId) {
         var me = this;
