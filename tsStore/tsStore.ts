@@ -78,4 +78,15 @@ export class TsStore {
         dataStore.setItem(me.storeName, JSON.stringify(storeKeys));
         dataStore.removeItem(storeItemId);
     }
+
+    public clear(): void {
+        let me = this;
+        let dataStore: Storage = me.dataStore();
+        let store: string | null = dataStore.getItem(me.storeName) || '[]';
+        let storeKeys: string[] = JSON.parse(store);
+        for (let i: number = 0; i < storeKeys.length; i++) {
+            dataStore.removeItem(storeKeys[i]);
+        }
+        dataStore.removeItem(me.storeName);
+    }
 }

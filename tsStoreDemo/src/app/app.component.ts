@@ -31,5 +31,6 @@ export class AppComponent implements OnInit {
             item.productName = 'PRODUCTNAME' + i;
             item = productStore.insert(item);
         }
+        productStore.clear();
     }
 }

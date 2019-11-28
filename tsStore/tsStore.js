@@ -73,6 +73,16 @@ var TsStore = /** @class */ (function () {
         dataStore.setItem(me.storeName, JSON.stringify(storeKeys));
         dataStore.removeItem(storeItemId);
     };
+    TsStore.prototype.clear = function () {
+        var me = this;
+        var dataStore = me.dataStore();
+        var store = dataStore.getItem(me.storeName) || '[]';
+        var storeKeys = JSON.parse(store);
+        for (var i = 0; i < storeKeys.length; i++) {
+            dataStore.removeItem(storeKeys[i]);
+        }
+        dataStore.removeItem(me.storeName);
+    };
     return TsStore;
 }());
 exports.TsStore = TsStore;
