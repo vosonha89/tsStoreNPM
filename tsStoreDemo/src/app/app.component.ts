@@ -15,22 +15,29 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        let userStore = TsStore.getStore('userStore');
+        let userStore: TsStore = TsStore.getStore('userStore');
+        userStore.clear();
         for (let i = 0; i < 200; i++) {
             let item: UserStoreModel = new UserStoreModel();
             item.username = 'user' + i;
             item.name = 'USER' + i;
-            item = userStore.insert(item)
-            userStore.remove(item.storeItemId);
+            item = userStore.insertOrUpdate(item)
+            if (i <= 100) {
+                item.username = 'updatedUser' + i;
+                item = userStore.insertOrUpdate(item)
+            }
+            else {
+                userStore.remove(item.storeItemId);
+            }
         }
 
-        let productStore = TsStore.getStore('productStore', true);
+        let productStore: TsStore = TsStore.getStore('productStore', true);
+        productStore.clear();
         for (let i = 0; i < 250; i++) {
             let item: ProductStoreModel = new ProductStoreModel();
             item.productType = 'TYPE' + i;
             item.productName = 'PRODUCTNAME' + i;
-            item = productStore.insert(item);
+            item = productStore.insertOrUpdate(item);
         }
-        productStore.clear();
     }
 }

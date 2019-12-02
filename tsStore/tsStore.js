@@ -50,11 +50,14 @@ var TsStore = /** @class */ (function () {
         if (isLocalStore === void 0) { isLocalStore = false; }
         return new TsStore(storeName, isLocalStore);
     };
-    TsStore.prototype.insert = function (item) {
+    TsStore.prototype.insertOrUpdate = function (item) {
         var me = this;
-        do {
-            item.storeItemId = me.storeName + 'Item_' + me.generateId();
-        } while (me.isStoreIdExists(item.storeItemId));
+        var isItemExist = me.isStoreIdExists(item.storeItemId);
+        if (!isItemExist) {
+            do {
+                item.storeItemId = me.storeName + 'Item_' + me.generateId();
+            } while (isItemExist);
+        }
         var dataStore = me.dataStore();
         var store = dataStore.getItem(me.storeName) || '[]';
         var storeKeys = JSON.parse(store);
