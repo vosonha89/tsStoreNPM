@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TsStore } from './utils/tsStore';
 import { UserStoreModel, ProductStoreModel } from './model/testModel';
+import { TsStoreQueryType } from './utils/queryTypes';
 
 @Component({
     selector: 'app-root',
@@ -21,6 +22,7 @@ export class AppComponent implements OnInit {
             let item: UserStoreModel = new UserStoreModel();
             item.username = 'user' + i;
             item.name = 'USER' + i;
+            item.age = i + 2;
             item = userStore.insertOrUpdate(item)
             if (i <= 100) {
                 item.username = 'updatedUser' + i;
@@ -39,5 +41,7 @@ export class AppComponent implements OnInit {
             item.productName = 'PRODUCTNAME' + i;
             item = productStore.insertOrUpdate(item);
         }
+
+        let findItems: UserStoreModel[] = userStore.find('age', 2, TsStoreQueryType.NotEqual);
     }
 }

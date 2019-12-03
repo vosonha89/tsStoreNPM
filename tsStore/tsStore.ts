@@ -1,4 +1,5 @@
 ﻿import { TsStoreItem } from "./tsStoreItem";
+import { TsStoreQueryType } from "./queryTypes";
 
 export class TsStore {
     public isLocalStore: boolean = false;
@@ -50,8 +51,67 @@ export class TsStore {
         return result;
     }
 
+    private compare(source: any, destination: any, queryType: TsStoreQueryType): boolean {
+        let result = false;
+        switch (queryType) {
+            case TsStoreQueryType.NotEqual:
+                if (source !== destination) {
+                    result = true;
+                }
+                break;
+            case TsStoreQueryType.GreaterThan:
+                if (source > destination) {
+                    result = true;
+                }
+                break;
+            case TsStoreQueryType.GreaterThanOrEqual:
+                if (source >= destination) {
+                    result = true;
+                }
+                break;
+            case TsStoreQueryType.LessThan:
+                if (source < destination) {
+                    result = true;
+                }
+                break;
+            case TsStoreQueryType.LessThanOrEqual:
+                if (source <= destination) {
+                    result = true;
+                }
+                break;
+            default:
+                if (source === destination) {
+                    result = true;
+                }
+                break;
+        }
+        return result;
+    }
+
     public static getStore(storeName: string, isLocalStore: boolean = false) {
         return new TsStore(storeName, isLocalStore);
+    }
+
+    public find<T extends TsStoreItem>(field: string, value: any, queryType: TsStoreQueryType): T[] {
+        let me = this;
+        let dataStore: Storage = me.dataStore();
+        let store: string | null = dataStore.getItem(me.storeName) || '[]';
+        let storeKeys: string[] = JSON.parse(store);
+        let result: T[] = [];
+        for (let i: number = 0; i < storeKeys.length; i++) {
+            try {
+                let item: T = JSON.parse(dataStore.getItem(storeKeys[i]) || '') as T;
+                if (item !== null) {
+                    let storeValue: any = item[field];
+                    if (me.compare(storeValue, value, queryType)) {
+                        result.push(item);
+                    }
+                }
+            } catch (ex) {
+                console.log(ex);
+            };
+        }
+        return result;
     }
 
     public insertOrUpdate<T extends TsStoreItem>(item: T): T {

@@ -3,6 +3,7 @@ import { TsStoreItem } from '../utils/tsStoreItem';
 export class UserStoreModel extends TsStoreItem {
     public username: string = '';
     public name: string = '';
+    public age: number = 0;
 }
 
 export class ProductStoreModel extends TsStoreItem {

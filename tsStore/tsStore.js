@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var queryTypes_1 = require("./queryTypes");
 var TsStore = /** @class */ (function () {
     function TsStore(storeName, isLocalStore) {
         if (isLocalStore === void 0) { isLocalStore = false; }
@@ -46,9 +47,68 @@ var TsStore = /** @class */ (function () {
         }
         return result;
     };
+    TsStore.prototype.compare = function (source, destination, queryType) {
+        var result = false;
+        switch (queryType) {
+            case queryTypes_1.TsStoreQueryType.NotEqual:
+                if (source !== destination) {
+                    result = true;
+                }
+                break;
+            case queryTypes_1.TsStoreQueryType.GreaterThan:
+                if (source > destination) {
+                    result = true;
+                }
+                break;
+            case queryTypes_1.TsStoreQueryType.GreaterThanOrEqual:
+                if (source >= destination) {
+                    result = true;
+                }
+                break;
+            case queryTypes_1.TsStoreQueryType.LessThan:
+                if (source < destination) {
+                    result = true;
+                }
+                break;
+            case queryTypes_1.TsStoreQueryType.LessThanOrEqual:
+                if (source <= destination) {
+                    result = true;
+                }
+                break;
+            default:
+                if (source === destination) {
+                    result = true;
+                }
+                break;
+        }
+        return result;
+    };
     TsStore.getStore = function (storeName, isLocalStore) {
         if (isLocalStore === void 0) { isLocalStore = false; }
         return new TsStore(storeName, isLocalStore);
+    };
+    TsStore.prototype.find = function (field, value, queryType) {
+        var me = this;
+        var dataStore = me.dataStore();
+        var store = dataStore.getItem(me.storeName) || '[]';
+        var storeKeys = JSON.parse(store);
+        var result = [];
+        for (var i = 0; i < storeKeys.length; i++) {
+            try {
+                var item = JSON.parse(dataStore.getItem(storeKeys[i]) || '');
+                if (item !== null) {
+                    var storeValue = item[field];
+                    if (me.compare(storeValue, value, queryType)) {
+                        result.push(item);
+                    }
+                }
+            }
+            catch (ex) {
+                console.log(ex);
+            }
+            ;
+        }
+        return result;
     };
     TsStore.prototype.insertOrUpdate = function (item) {
         var me = this;
