@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TsStore } from './utils/tsStore';
 import { UserStoreModel, ProductStoreModel } from './model/testModel';
-import { TsStoreQueryType } from './utils/queryTypes';
+import { TsStore } from 'typescriptstore/lib/tsStore';
+import { TsStoreQueryType } from 'typescriptstore/lib/queryTypes';
 
 @Component({
     selector: 'app-root',
@@ -42,6 +42,7 @@ export class AppComponent implements OnInit {
             item = productStore.insertOrUpdate(item);
         }
 
-        let findItems: UserStoreModel[] = userStore.find('age', 2, TsStoreQueryType.NotEqual);
+        let findItems: UserStoreModel[] = userStore.find('age', 2, TsStoreQueryType.Equal);
+        debugger
     }
 }

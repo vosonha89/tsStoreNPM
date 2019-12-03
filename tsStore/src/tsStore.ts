@@ -116,18 +116,18 @@ export class TsStore {
 
     public insertOrUpdate<T extends TsStoreItem>(item: T): T {
         let me = this;
+        let dataStore: Storage = me.dataStore();
         let isItemExist: boolean = me.isStoreIdExists(item.storeItemId);
         if (!isItemExist) {
             do {
                 item.storeItemId = me.storeName + 'Item_' + me.generateId();
             }
             while (isItemExist);
+            let store: string | null = dataStore.getItem(me.storeName) || '[]';
+            let storeKeys: string[] = JSON.parse(store);
+            storeKeys.push(item.storeItemId);
+            dataStore.setItem(me.storeName, JSON.stringify(storeKeys));
         }
-        let dataStore: Storage = me.dataStore();
-        let store: string | null = dataStore.getItem(me.storeName) || '[]';
-        let storeKeys: string[] = JSON.parse(store);
-        storeKeys.push(item.storeItemId);
-        dataStore.setItem(me.storeName, JSON.stringify(storeKeys));
         dataStore.setItem(item.storeItemId, JSON.stringify(item));
         return item;
     }

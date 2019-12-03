@@ -1,4 +1,4 @@
-import { TsStoreItem } from '../utils/tsStoreItem';
+import { TsStoreItem } from 'typescriptstore/lib/tsStoreItem';
 
 export class UserStoreModel extends TsStoreItem {
     public username: string = '';

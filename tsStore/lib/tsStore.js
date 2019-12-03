@@ -112,17 +112,17 @@ var TsStore = /** @class */ (function () {
     };
     TsStore.prototype.insertOrUpdate = function (item) {
         var me = this;
+        var dataStore = me.dataStore();
         var isItemExist = me.isStoreIdExists(item.storeItemId);
         if (!isItemExist) {
             do {
                 item.storeItemId = me.storeName + 'Item_' + me.generateId();
             } while (isItemExist);
+            var store = dataStore.getItem(me.storeName) || '[]';
+            var storeKeys = JSON.parse(store);
+            storeKeys.push(item.storeItemId);
+            dataStore.setItem(me.storeName, JSON.stringify(storeKeys));
         }
-        var dataStore = me.dataStore();
-        var store = dataStore.getItem(me.storeName) || '[]';
-        var storeKeys = JSON.parse(store);
-        storeKeys.push(item.storeItemId);
-        dataStore.setItem(me.storeName, JSON.stringify(storeKeys));
         dataStore.setItem(item.storeItemId, JSON.stringify(item));
         return item;
     };
