@@ -1,6 +1,6 @@
 {
   "name": "typescriptstore",
-  "version": "0.2.6",
+  "version": "0.2.9",
   "description": "LocalStorage and SessionStorage for typescript",
   "main": "lib/tsStore.js",
   "types": "lib/tsStore.d.ts",

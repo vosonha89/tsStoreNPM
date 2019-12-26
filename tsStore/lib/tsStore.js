@@ -95,9 +95,12 @@ var TsStore = /** @class */ (function () {
         var result = [];
         for (var i = 0; i < storeKeys.length; i++) {
             try {
-                var item = JSON.parse(dataStore.getItem(storeKeys[i]) || '');
-                if (item !== null) {
-                    result.push(item);
+                var jsonItem = dataStore.getItem(storeKeys[i]) || '';
+                if (jsonItem) {
+                    var item = JSON.parse(jsonItem);
+                    if (item !== null) {
+                        result.push(item);
+                    }
                 }
             }
             catch (ex) {
@@ -114,9 +117,12 @@ var TsStore = /** @class */ (function () {
         var storeKeys = JSON.parse(store);
         var result = null;
         try {
-            var item = JSON.parse(dataStore.getItem(storeKeys[0]) || '');
-            if (item !== null) {
-                result = item;
+            var jsonItem = dataStore.getItem(storeKeys[0]) || '';
+            if (jsonItem) {
+                var item = JSON.parse(jsonItem);
+                if (item !== null) {
+                    result = item;
+                }
             }
         }
         catch (ex) {
@@ -132,9 +138,12 @@ var TsStore = /** @class */ (function () {
         var storeKeys = JSON.parse(store);
         var result = null;
         try {
-            var item = JSON.parse(dataStore.getItem(storeKeys[storeKeys.length - 1]) || '');
-            if (item !== null) {
-                result = item;
+            var jsonItem = dataStore.getItem(storeKeys[storeKeys.length - 1]) || '';
+            if (jsonItem) {
+                var item = JSON.parse(jsonItem);
+                if (item !== null) {
+                    result = item;
+                }
             }
         }
         catch (ex) {
@@ -151,11 +160,14 @@ var TsStore = /** @class */ (function () {
         var result = [];
         for (var i = 0; i < storeKeys.length; i++) {
             try {
-                var item = JSON.parse(dataStore.getItem(storeKeys[i]) || '');
-                if (item !== null) {
-                    var storeValue = item[field];
-                    if (me.compare(storeValue, value, queryType)) {
-                        result.push(item);
+                var jsonItem = dataStore.getItem(storeKeys[i]) || '';
+                if (jsonItem) {
+                    var item = JSON.parse(jsonItem);
+                    if (item !== null) {
+                        var storeValue = item[field];
+                        if (me.compare(storeValue, value, queryType)) {
+                            result.push(item);
+                        }
                     }
                 }
             }

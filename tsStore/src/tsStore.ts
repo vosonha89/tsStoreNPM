@@ -100,9 +100,12 @@ export class TsStore {
         let result: T[] = [];
         for (let i: number = 0; i < storeKeys.length; i++) {
             try {
-                let item: T = JSON.parse(dataStore.getItem(storeKeys[i]) || '') as T;
-                if (item !== null) {
-                    result.push(item);
+                let jsonItem = dataStore.getItem(storeKeys[i]) || '';
+                if (jsonItem) {
+                    let item: T = JSON.parse(jsonItem) as T;
+                    if (item !== null) {
+                        result.push(item);
+                    }
                 }
             } catch (ex) {
                 console.log(ex);
@@ -118,9 +121,12 @@ export class TsStore {
         let storeKeys: string[] = JSON.parse(store);
         let result: any = null;
         try {
-            let item: T = JSON.parse(dataStore.getItem(storeKeys[0]) || '') as T;
-            if (item !== null) {
-                result = item;
+            let jsonItem = dataStore.getItem(storeKeys[0]) || '';
+            if (jsonItem) {
+                let item: T = JSON.parse(jsonItem) as T;
+                if (item !== null) {
+                    result = item;
+                }
             }
         } catch (ex) {
             console.log(ex);
@@ -135,9 +141,12 @@ export class TsStore {
         let storeKeys: string[] = JSON.parse(store);
         let result: any = null;
         try {
-            let item: T = JSON.parse(dataStore.getItem(storeKeys[storeKeys.length - 1]) || '') as T;
-            if (item !== null) {
-                result = item;
+            let jsonItem = dataStore.getItem(storeKeys[storeKeys.length - 1]) || '';
+            if (jsonItem) {
+                let item: T = JSON.parse(jsonItem) as T;
+                if (item !== null) {
+                    result = item;
+                }
             }
         } catch (ex) {
             console.log(ex);
@@ -153,11 +162,14 @@ export class TsStore {
         let result: T[] = [];
         for (let i: number = 0; i < storeKeys.length; i++) {
             try {
-                let item: T = JSON.parse(dataStore.getItem(storeKeys[i]) || '') as T;
-                if (item !== null) {
-                    let storeValue: any = item[field];
-                    if (me.compare(storeValue, value, queryType)) {
-                        result.push(item);
+                let jsonItem = dataStore.getItem(storeKeys[i]) || '';
+                if (jsonItem) {
+                    let item: T = JSON.parse(jsonItem) as T;
+                    if (item !== null) {
+                        let storeValue: any = item[field];
+                        if (me.compare(storeValue, value, queryType)) {
+                            result.push(item);
+                        }
                     }
                 }
             } catch (ex) {
