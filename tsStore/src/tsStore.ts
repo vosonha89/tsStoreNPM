@@ -92,6 +92,59 @@ export class TsStore {
         return new TsStore(storeName, isLocalStore);
     }
 
+    public all<T extends TsStoreItem>(): T[] {
+        let me = this;
+        let dataStore: Storage = me.dataStore();
+        let store: string | null = dataStore.getItem(me.storeName) || '[]';
+        let storeKeys: string[] = JSON.parse(store);
+        let result: T[] = [];
+        for (let i: number = 0; i < storeKeys.length; i++) {
+            try {
+                let item: T = JSON.parse(dataStore.getItem(storeKeys[i]) || '') as T;
+                if (item !== null) {
+                    result.push(item);
+                }
+            } catch (ex) {
+                console.log(ex);
+            };
+        }
+        return result;
+    }
+
+    public first<T extends TsStoreItem>(): T {
+        let me = this;
+        let dataStore: Storage = me.dataStore();
+        let store: string | null = dataStore.getItem(me.storeName) || '[]';
+        let storeKeys: string[] = JSON.parse(store);
+        let result: any = null;
+        try {
+            let item: T = JSON.parse(dataStore.getItem(storeKeys[0]) || '') as T;
+            if (item !== null) {
+                result = item;
+            }
+        } catch (ex) {
+            console.log(ex);
+        };
+        return result as T;
+    }
+
+    public last<T extends TsStoreItem>(): T {
+        let me = this;
+        let dataStore: Storage = me.dataStore();
+        let store: string | null = dataStore.getItem(me.storeName) || '[]';
+        let storeKeys: string[] = JSON.parse(store);
+        let result: any = null;
+        try {
+            let item: T = JSON.parse(dataStore.getItem(storeKeys[storeKeys.length - 1]) || '') as T;
+            if (item !== null) {
+                result = item;
+            }
+        } catch (ex) {
+            console.log(ex);
+        };
+        return result as T;
+    }
+
     public find<T extends TsStoreItem>(field: string, value: any, queryType: TsStoreQueryType): T[] {
         let me = this;
         let dataStore: Storage = me.dataStore();

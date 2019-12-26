@@ -87,6 +87,62 @@ var TsStore = /** @class */ (function () {
         if (isLocalStore === void 0) { isLocalStore = false; }
         return new TsStore(storeName, isLocalStore);
     };
+    TsStore.prototype.all = function () {
+        var me = this;
+        var dataStore = me.dataStore();
+        var store = dataStore.getItem(me.storeName) || '[]';
+        var storeKeys = JSON.parse(store);
+        var result = [];
+        for (var i = 0; i < storeKeys.length; i++) {
+            try {
+                var item = JSON.parse(dataStore.getItem(storeKeys[i]) || '');
+                if (item !== null) {
+                    result.push(item);
+                }
+            }
+            catch (ex) {
+                console.log(ex);
+            }
+            ;
+        }
+        return result;
+    };
+    TsStore.prototype.first = function () {
+        var me = this;
+        var dataStore = me.dataStore();
+        var store = dataStore.getItem(me.storeName) || '[]';
+        var storeKeys = JSON.parse(store);
+        var result = null;
+        try {
+            var item = JSON.parse(dataStore.getItem(storeKeys[0]) || '');
+            if (item !== null) {
+                result = item;
+            }
+        }
+        catch (ex) {
+            console.log(ex);
+        }
+        ;
+        return result;
+    };
+    TsStore.prototype.last = function () {
+        var me = this;
+        var dataStore = me.dataStore();
+        var store = dataStore.getItem(me.storeName) || '[]';
+        var storeKeys = JSON.parse(store);
+        var result = null;
+        try {
+            var item = JSON.parse(dataStore.getItem(storeKeys[storeKeys.length - 1]) || '');
+            if (item !== null) {
+                result = item;
+            }
+        }
+        catch (ex) {
+            console.log(ex);
+        }
+        ;
+        return result;
+    };
     TsStore.prototype.find = function (field, value, queryType) {
         var me = this;
         var dataStore = me.dataStore();
