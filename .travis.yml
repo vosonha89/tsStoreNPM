@@ -1,27 +1,18 @@
-language node_js
+language: node_js
+  
+before_script:
+  - cd tsStore
 
-node_js
-  - 'node'
-  - '10'
-  - '8'
-
-env
+env:
   - workerCount=3 timeout=600000
 
-matrix
-  fast_finish true
-
-branches
-  only
+branches:
+  only:
   - master
 
-install
-  - npm uninstall typescript --no-save
+install:
   - npm install
 
-cache
-  directories
+cache:
+  directories:
     - node_modules
-
-git
-  depth 1
