@@ -10,14 +10,14 @@ matrix:
   fast_finish true
 
 branches:
-  only
+  only:
   - master
 
 install:
   - npm install
 
 cache:
-  directories
+  directories:
     - node_modules
 
 git:
