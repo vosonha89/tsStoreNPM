@@ -1,29 +1,24 @@
-language node_js
-
-node_js
-  - 'node'
-  - '10'
-  - '8'
+language: node_js
   
-before_script
+before_script:
   - cd tsStore
 
-env
+env:
   - workerCount=3 timeout=600000
 
-matrix
+matrix:
   fast_finish true
 
-branches
+branches:
   only
   - master
 
-install
+install:
   - npm install
 
-cache
+cache:
   directories
     - node_modules
 
-git
+git:
   depth 1
