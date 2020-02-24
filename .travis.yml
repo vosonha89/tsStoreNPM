@@ -4,6 +4,9 @@ node_js
   - 'node'
   - '10'
   - '8'
+  
+before_script
+  - cd tsStore
 
 env
   - workerCount=3 timeout=600000
@@ -16,7 +19,6 @@ branches
   - master
 
 install
-  - npm uninstall typescript --no-save
   - npm install
 
 cache
