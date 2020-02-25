@@ -3,7 +3,6 @@ language: node_js
 before_script:
   - cd tsStore
  
-
 env:
   - workerCount=3 timeout=600000
 
@@ -12,14 +11,11 @@ branches:
   - master
 
 install:
-  - apt install node-typescript
-  - npm install -g concurrently
   - npm install -g typescript
-  - npm install -g lite-server
   - npm install
 
 cache:
   directories:
     - node_modules
 script: 
-  npm run build
+  echo "npm test temporarily disabled"
