@@ -2,6 +2,7 @@ language: node_js
   
 before_script:
   - cd tsStore
+  - npm install typescript -g
 
 env:
   - workerCount=3 timeout=600000
