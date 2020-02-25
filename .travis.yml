@@ -1,8 +1,11 @@
 language: node_js
   
 before_script:
+  - npm install -g concurrently
+  - npm install -g typescript
+  - npm install -g lite-server
   - cd tsStore
-  - npm install typescript -g
+ 
 
 env:
   - workerCount=3 timeout=600000
