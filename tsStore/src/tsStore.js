@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var queryTypes_1 = require("./queryTypes");
 var TsStore = /** @class */ (function () {
     function TsStore(storeName, isLocalStore) {
@@ -217,4 +217,3 @@ var TsStore = /** @class */ (function () {
     return TsStore;
 }());
 exports.TsStore = TsStore;
-//# sourceMappingURL=tsStore.js.map

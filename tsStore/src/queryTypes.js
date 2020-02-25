@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var TsStoreQueryType;
 (function (TsStoreQueryType) {
     TsStoreQueryType[TsStoreQueryType["Equal"] = 0] = "Equal";
@@ -9,4 +9,3 @@ var TsStoreQueryType;
     TsStoreQueryType[TsStoreQueryType["LessThan"] = 4] = "LessThan";
     TsStoreQueryType[TsStoreQueryType["LessThanOrEqual"] = 5] = "LessThanOrEqual";
 })(TsStoreQueryType = exports.TsStoreQueryType || (exports.TsStoreQueryType = {}));
-//# sourceMappingURL=queryTypes.js.map

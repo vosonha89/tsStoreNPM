@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var TsStoreItem = /** @class */ (function () {
     function TsStoreItem() {
         this.storeItemId = '';
@@ -7,4 +7,3 @@ var TsStoreItem = /** @class */ (function () {
     return TsStoreItem;
 }());
 exports.TsStoreItem = TsStoreItem;
-//# sourceMappingURL=tsStoreItem.js.map
