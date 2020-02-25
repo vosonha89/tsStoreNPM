@@ -11,11 +11,11 @@ branches:
   - master
 
 install:
-  - npm install -g typescript
+  - npm run setup
   - npm install
 
 cache:
   directories:
     - node_modules
 script: 
-  echo "npm test temporarily disabled"
+  npm run build
