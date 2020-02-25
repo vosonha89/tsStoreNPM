@@ -1,6 +1,8 @@
 # tsStoreNPM
 LocalStorage and SessionStorage for typescript
 
+[![Build Status](https://travis-ci.com/vosonha89/tsStoreNPM.svg?branch=master)](https://travis-ci.com/vosonha89/tsStoreNPM)
+
 ## Installation
 ```sh
 $ npm i typescriptstore
