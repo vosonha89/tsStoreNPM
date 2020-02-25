@@ -1,7 +1,4 @@
 language: node_js
-
-before_script:
-  - cd tsStore
  
 env:
   - workerCount=3 timeout=600000
@@ -15,5 +12,4 @@ install:
   - npm i -g typescript@3.7.2
 
 script:
-  npm ci
-  npm run build
+  npm build tsStore
