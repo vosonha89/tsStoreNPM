@@ -11,7 +11,6 @@ branches:
   - master
 
 install:
-  - npm run setup
   - npm install
 
 cache:
