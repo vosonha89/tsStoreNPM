@@ -1,3 +1,4 @@
+os: win
 language: node_js
 
 before_script:
