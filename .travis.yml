@@ -11,8 +11,7 @@ branches:
   - master
 
 install:
-  - npm i -g typescript
-  - npm install
+  - npm i -g typescript@3.7.2
 
 cache:
   directories:
