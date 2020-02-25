@@ -1,9 +1,6 @@
 language: node_js
   
 before_script:
-  - npm install -g concurrently
-  - npm install -g typescript
-  - npm install -g lite-server
   - cd tsStore
  
 
@@ -15,6 +12,10 @@ branches:
   - master
 
 install:
+  - apt install node-typescript
+  - npm install -g concurrently
+  - npm install -g typescript
+  - npm install -g lite-server
   - npm install
 
 cache:
