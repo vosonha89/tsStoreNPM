@@ -2,7 +2,7 @@ language: node_js
   
 before_script:
   - cd tsStore
-
+ 
 env:
   - workerCount=3 timeout=600000
 
@@ -11,8 +11,11 @@ branches:
   - master
 
 install:
+  - npm run setup
   - npm install
 
 cache:
   directories:
     - node_modules
+script: 
+  npm run build
