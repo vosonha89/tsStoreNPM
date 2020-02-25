@@ -5,6 +5,7 @@
   "main": "lib/tsStore.js",
   "types": "lib/tsStore.d.ts",
   "scripts": {
+    "setup": "npm install",
     "test": "mocha",
     "build": "tsc"
   },
