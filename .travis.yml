@@ -1,5 +1,5 @@
 language: node_js
-  
+os: windows
 before_script:
   - cd tsStore
  
@@ -11,6 +11,7 @@ branches:
   - master
 
 install:
+  - npm i -g typescript
   - npm install
 
 cache:
