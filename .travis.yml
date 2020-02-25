@@ -1,4 +1,3 @@
-os: windows
 language: node_js
 
 before_script:
@@ -15,5 +14,6 @@ install:
   - npm uninstall typescript --no-save
   - npm i -g typescript@3.7.2
 
-script: 
+script:
+  npm ci
   npm run build
