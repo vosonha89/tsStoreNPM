@@ -7,7 +7,7 @@ LocalStorage and SessionStorage for typescript
 ```sh
 $ npm i typescriptstore
 ```
-```shtsStoreNPM``` requires [Typescript](https://www.typescriptlang.org/) v3.7+ to run.
+```tsStoreNPM``` requires [Typescript](https://www.typescriptlang.org/) v3.7+ to run.
 
 ## How to use
 
